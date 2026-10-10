@@ -1,0 +1,59 @@
+﻿<Window x:Class="CabinetOftalmoWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cabinet Oftalmologie - Bază de Date" Height="650" Width="1350" WindowStartupLocation="CenterScreen">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="SearchBox" Grid.Column="0" FontSize="16" Padding="8" VerticalContentAlignment="Center" TextChanged="SearchBox_TextChanged"/>
+            <Button x:Name="BtnAdaugaPacient" Grid.Column="1" Content="+ Adaugă" FontSize="14" Padding="15,5" Margin="10,0,0,0" Background="#4CAF50" Foreground="White" FontWeight="Bold" BorderThickness="0" Click="BtnAdaugaPacient_Click"/>
+            <Button x:Name="BtnEditeazaPacient" Grid.Column="2" Content="Editează" FontSize="14" Padding="15,5" Margin="10,0,0,0" Background="#FF9800" Foreground="White" FontWeight="Bold" BorderThickness="0" Click="BtnEditeazaPacient_Click"/>
+            <Button x:Name="BtnConsultNou" Grid.Column="3" Content="👁️ Consult Nou" FontSize="14" Padding="15,5" Margin="10,0,0,0" Background="#9C27B0" Foreground="White" FontWeight="Bold" BorderThickness="0" Click="BtnConsultNou_Click"/>
+            <Button x:Name="BtnStergePacient" Grid.Column="4" Content="Șterge" FontSize="14" Padding="15,5" Margin="10,0,0,0" Background="#F44336" Foreground="White" FontWeight="Bold" BorderThickness="0" Click="BtnStergePacient_Click"/>
+            <Button x:Name="BtnBackup" Grid.Column="5" Content="💾 Salvare" FontSize="14" Padding="15,5" Margin="25,0,0,0" Background="#607D8B" Foreground="White" FontWeight="Bold" BorderThickness="0" Click="BtnBackup_Click"/>
+            <Button x:Name="BtnRestore" Grid.Column="6" Content="📂 Încarcă" FontSize="14" Padding="15,5" Margin="10,0,0,0" Background="#795548" Foreground="White" FontWeight="Bold" BorderThickness="0" Click="BtnRestore_Click"/>
+        </Grid>
+
+        <DataGrid x:Name="TabelPacienti" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" FontSize="14" AlternatingRowBackground="#F5F5F5" HeadersVisibility="Column" GridLinesVisibility="Horizontal" SelectionMode="Single" MouseDoubleClick="TabelPacienti_MouseDoubleClick">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#BBDEFB" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nume Complet" Binding="{Binding Nume}" Width="2*"/>
+                <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" Width="*"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="1.5*"/>
+                <DataGridTextColumn Header="Ramă" Binding="{Binding Rama}" Width="*"/>
+                <DataGridTextColumn Header="Tip Lentilă" Binding="{Binding TipLentila}" Width="*"/>
+                <DataGridTextColumn Header="Dioptrii" Binding="{Binding Dioptrii}" Width="1.5*"/>
+                <DataGridTextColumn Header="Observații" Binding="{Binding Observatii}" Width="2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Border Grid.Row="2" Background="#ECEFF1" Margin="0,15,0,0" Padding="10,5" CornerRadius="5">
+            <TextBlock x:Name="TxtStatus" Text="Total pacienți înregistrați: 0" FontSize="14" FontWeight="Bold" Foreground="#455A64"/>
+        </Border>
+    </Grid>
+</Window>
